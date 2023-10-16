@@ -1,0 +1,3 @@
+Der Austausch zwischen Prozessen von Daten über globale Variablen ist nicht moeglich. Aber: gleiche virtuelle Adresse. (siehe virtual memory)
+
+Die Reihenfolge der Ausführung Kind/Eltern-Prozess ist nicht-deterministisch.
