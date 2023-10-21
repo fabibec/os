@@ -12,17 +12,18 @@ int main(){
 
 	pid = fork();
 
-	if(pid < 0){
-		printf("err\n");
+	if(pid == -1){
+		fprintf(stderr, "err\n");
 	}else if(pid == 0){
 		val = 1;
-	
 		printf("child pid: %d\n", getpid());
 		printf("val in child proc: %d\n", val);
+		fflush(stdout);
 	}else{
-		wait(NULL);
+		//wait(NULL);
 		printf("parent pid: %d\n", getpid());
 		printf("val after child proc: %d\n", val);
+		fflush(stdout);
 	}
 
 	return 0;		
