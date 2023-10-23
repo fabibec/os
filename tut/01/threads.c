@@ -1,34 +1,46 @@
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 //Inspired by: https://www.cs.cmu.edu/afs/cs/academic/class/15492-f07/www/pthreads.html
-
 
 pthread_mutex_t mutexCounter = PTHREAD_MUTEX_INITIALIZER;
 short counter = 0;
 
 void* printCounter(void* threadName);
 
+typedef struct {
+    pthread_t id;
+    char* name;
+    int retVal;
+} threadInfo;
+
 int main (void){
-    pthread_t threads[2];
-    char* threadNames[2] = {"Thread 1", "Thread 2"};
-    int iret1, iret2;
+    threadInfo threads[2];
+    threads[0].name = "Michi";
+    threads[1].name = "Flo";
 
-    iret1 = pthread_create(threads, NULL, printCounter, (void*) threadNames[0]);
-    iret2 = pthread_create((threads + 1), NULL, printCounter, (void*) threadNames[1]);
+    threads[0].retVal = pthread_create(&(threads[0].id), NULL, printCounter, (void*) threads[0].name);
+    threads[1].retVal = pthread_create(&(threads[1].id), NULL, printCounter, (void*) threads[1].name);
 
-    pthread_join(threads[0], NULL);
-    pthread_join(threads[1], NULL);
+    pthread_join(threads[0].id, NULL);
+    pthread_join(threads[1].id, NULL);
 
-    printf("Thread 1 returns: %d\n2", iret1);
-    printf("Thread 2 returns: %d\n", iret2);
+    printf("%s returns: %d\n", threads[0].name, threads[0].retVal);
+    printf("%s returns: %d\n", threads[1].name, threads[1].retVal);
+    
+    pthread_exit(0);
     return 0;
 }
 
 void* printCounter(void* threadName){
+
+    pthread_mutex_lock(&mutexCounter);
     while(counter < 10){
+        pthread_mutex_unlock(&mutexCounter);
         pthread_mutex_lock(&mutexCounter);
         printf("Message from %s: Counter is at %hu\n", (char *) threadName, ++counter);
         pthread_mutex_unlock(&mutexCounter);
         sleep(2);
     }
 }
+

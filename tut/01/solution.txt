@@ -1,3 +1,7 @@
-Der Austausch zwischen Prozessen von Daten über globale Variablen ist nicht moeglich. Aber: gleiche virtuelle Adresse. (siehe virtual memory)
-
-Die Reihenfolge der Ausführung Kind/Eltern-Prozess ist nicht-deterministisch.
+Aufgabe 1:
+	1.1.: Der Austausch zwischen Prozessen von Daten über globale Variablen ist nicht moeglich. Aber: gleiche virtuelle Adresse. (siehe virtual memory)
+	1.2.:Die Reihenfolge der Ausführung Kind/Eltern-Prozess ist nicht-deterministisch.
+	
+Aufgabe 2:
+	2.1.: Der Austausch über die globale Variable ist möglich (Problem: Zugriff auf gleichen Speicher verwalten -> Lösung Mutex).
+	2.2.: Die Reihenfolge der Threads ist nicht deterministisch.	
