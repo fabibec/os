@@ -47,8 +47,9 @@ V(zoneB)
 V(zoneA)
 
 Für den Abflug:
-P(zoneB)
-V(zoneA)
 P(zoneC)
+P(zoneB)
+P(zoneA)
+V(zoneA)
 V(zoneB)
 V(zoneC)
