@@ -1,0 +1,55 @@
+1)
+
+main:
+semainit(isReady, 1)
+semainit(fiveEuro, 0)
+semainit(flowerForCustomer, 0)
+semainit(flowerCounter, 60)
+
+process A: Lieferant
+
+while(1)
+    waitTwoDays
+    for i=0; i<60; i++
+        V(flowerCounter)
+
+
+process B: Kunde
+
+P(isReady)
+V(fiveEuro)
+P(flowerForCustomer)
+V(isReady)
+
+
+process C: Automat
+
+while(1)
+    P(fiveEuro)
+    P(flowerCounter)
+    V(flowerForCustomer)
+
+
+2)
+
+semainit(zoneA, 1)
+semainit(zoneB, 3)
+semainit(zoneC, 7)
+
+P(zoneC)
+
+P(zoneB)
+
+V(zoneC)
+P(zoneA)
+
+V(zoneB)
+V(zoneA)
+
+Für den Abflug:
+P(zoneC)
+P(zoneB)
+P(zoneA)
+V(zoneA)
+V(zoneB)
+V(zoneC)
