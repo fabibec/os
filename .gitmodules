@@ -1,0 +1,3 @@
+[submodule "page-replace-visualizer"]
+	path = page-replace-visualizer
+	url = https://github.com/fabibec/page-replace-visualizer.git
